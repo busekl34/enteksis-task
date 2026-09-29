@@ -1,288 +1,267 @@
-# AI_LOG – FlowTask
+# AI_LOG.md
 
-## 1. Proje ve AI Kullanım Amacı
+## 1. AI Kullanım Amacı
 
-Bu proje, verilen teknik değerlendirme görevi kapsamında geliştirilmiş kurgusal bir teknoloji hizmeti landing page uygulamasıdır.
+Bu proje geliştirilirken yapay zeka, geliştiriciyi destekleyen bir yardımcı araç olarak kullanılmıştır.
 
-Geliştirme sürecinde yapay zeka, kodlama ve problem çözme sürecini destekleyen bir yardımcı araç olarak kullanılmıştır.
+AI; proje planlama, kod geliştirme, hata ayıklama, test tasarımı, dokümantasyon ve deployment sürecinde destek amacıyla kullanılmıştır.
 
-AI kullanımındaki temel amaçlar:
+Üretilen çıktılar doğrudan ve kontrol edilmeden kullanılmamış; lokal ortamda çalıştırılmış, test edilmiş ve proje gereksinimlerine göre değiştirilmiştir.
 
-* Proje yapısının planlanması
-* Backend başlangıç kodunun oluşturulması
-* Frontend yapısının hazırlanması
-* Form doğrulama yaklaşımının oluşturulması
-* Test senaryolarının planlanması
-* Dokümantasyonun hazırlanması
+---
 
-AI tarafından üretilen çıktılar doğrudan kabul edilmemiş, lokal ortamda çalıştırılarak doğrulanmıştır.
+## 2. AI Kullanılan Alanlar
 
-## 2. Kullanılan AI Aracı
+AI aşağıdaki konularda kullanılmıştır:
 
-Geliştirme sürecinde ChatGPT kullanılmıştır.
+- Landing page yapısının planlanması
+- Flask backend başlangıç yapısının oluşturulması
+- API endpoint tasarımı
+- Form validation yaklaşımının oluşturulması
+- HTML/CSS/JavaScript geliştirme desteği
+- Veritabanı yapısının planlanması
+- Otomatik test senaryolarının oluşturulması
+- Hata mesajlarının düzenlenmesi
+- Deployment sorunlarının analiz edilmesi
+- README.md hazırlanması
+- Test ve geliştirme sürecinin dokümante edilmesi
 
-ChatGPT özellikle kod üretimi, hata ayıklama, test senaryoları ve dokümantasyon konusunda yardımcı araç olarak kullanılmıştır.
+---
 
-## 3. Görev Dağılımı
+## 3. Başlangıçtaki Teknik Yaklaşım
 
-### AI tarafından yapılanlar
+İlk geliştirme aşamasında küçük ölçekli prototip için SQLite kullanılmıştır.
 
-AI aşağıdaki konularda öneriler ve başlangıç kodları sağlamıştır:
+Bu yaklaşım lokal geliştirme ve ilk testler sırasında kullanılmıştır.
 
-* Flask + SQLite mimarisinin önerilmesi
-* `app.py` için Flask API başlangıç kodu
-* HTML landing page yapısı
-* Responsive CSS yapısı
-* JavaScript form gönderimi
-* Client-side ve server-side validation yaklaşımı
-* SQLite kayıt yapısı
-* Otomatik test dosyası için başlangıç kodu
-* README ve AI_LOG dokümantasyonu
+Ancak deployment aşamasında uygulamanın kalıcı ve erişilebilir bir PostgreSQL veritabanına bağlanması gerektiği değerlendirilmiştir.
 
-### Geliştirici tarafından yapılanlar
+Bu nedenle veritabanı yapısı PostgreSQL/Supabase'e geçirilmiştir.
 
-Geliştirici tarafından:
+---
 
-* Görev gereksinimleri incelenmiştir.
-* Proje yapısı oluşturulmuştur.
-* Kodlar lokal ortamda çalıştırılmıştır.
-* Form davranışları manuel olarak test edilmiştir.
-* Veritabanı kayıtları kontrol edilmiştir.
-* Client-side validation kontrol edilmiştir.
-* Server-side validation doğrudan API isteğiyle test edilmiştir.
-* Otomatik testler çalıştırılmıştır.
-* AI çıktıları proje gereksinimlerine göre kontrol edilmiştir.
-* Dokümantasyon ve teslim yapısı hazırlanmıştır.
+## 4. AI Çıktılarının Uyarlanması
 
-## 4. Kabul Edilen Öneriler
-
-### Flask + SQLite
-
-AI tarafından küçük ölçekli proje için Flask ve SQLite kullanılması önerilmiştir.
-
-Bu yaklaşım kabul edilmiştir.
-
-Gerekçe:
-
-* Projenin kapsamı küçük olduğu için yeterlidir.
-* Kurulumu basittir.
-* Server-side kayıt gereksinimini karşılar.
-* Harici veritabanı servisi gerektirmez.
-
-### Client-side + Server-side Validation
-
-Her iki tarafta da doğrulama uygulanması önerilmiştir.
-
-Bu yaklaşım kabul edilmiştir.
-
-Client-side validation kullanıcı deneyimini iyileştirirken server-side validation istemciden bağımsız güvenlik kontrolü sağlar.
-
-### Parametreli SQL
-
-SQL sorgularında parametre kullanılması önerilmiştir ve kabul edilmiştir.
-
-Örnek:
-
-```python
-connection.execute(
-    """
-    INSERT INTO requests
-    (name, email, service, description)
-    VALUES (?, ?, ?, ?)
-    """,
-    (name, email, service, description)
-)
-```
-
-## 5. Değiştirilen / Uyarlanan Çıktılar
-
-AI tarafından oluşturulan başlangıç kodları proje gereksinimlerine göre uyarlanmıştır.
+AI tarafından önerilen kodlar proje gereksinimlerine göre kontrol edilmiş ve gerekli yerlerde değiştirilmiştir.
 
 Örneğin:
 
-* Hizmet seçenekleri FlowTask senaryosuna göre belirlenmiştir.
-* Form alanlarının karakter sınırları belirlenmiştir.
-* Kullanıcı mesajları Türkçe hazırlanmıştır.
-* Landing page metinleri kurgusal hizmete göre oluşturulmuştur.
-* API endpoint'i `/api/requests` olarak yapılandırılmıştır.
-* Veritabanı alanları talep formuna göre belirlenmiştir.
-* Responsive tasarım mobil ekranlara göre düzenlenmiştir.
-* Test senaryoları mevcut API davranışına göre düzenlenmiştir.
+- API doğrulama kuralları proje gereksinimlerine göre düzenlenmiştir.
+- İzin verilen hizmetler açık bir liste/set üzerinden kontrol edilmiştir.
+- SQL sorgularında parametreli kullanım tercih edilmiştir.
+- Başarı mesajının yalnızca veritabanı kaydı başarılı olduktan sonra gösterilmesi sağlanmıştır.
+- Loading, success ve error durumları frontend akışına eklenmiştir.
+- Testler gerçek veritabanına bağımlı olmayacak şekilde mock kullanılarak düzenlenmiştir.
 
-## 6. Doğrulama Süreci
+---
 
-AI tarafından oluşturulan kodların çalıştığını kontrol etmek için birden fazla doğrulama yapılmıştır.
+## 5. Deployment Sırasında Karşılaşılan Hata
 
-### 6.1 Uygulamanın çalıştırılması
+PostgreSQL'e geçişten sonra Render üzerinde ilk deployment sırasında veritabanı bağlantı kodunda bir hata oluşmuştur.
 
-Flask uygulaması lokal ortamda çalıştırılmıştır:
+Eski SQLite yaklaşımından kalan kodda bağlantı nesnesi üzerinde doğrudan `execute()` kullanılmıştır.
 
-```text
-python app.py
-```
-
-Uygulama:
+Render loglarında aşağıdaki hata görülmüştür:
 
 ```text
-http://127.0.0.1:5000
+AttributeError: 'psycopg2.extensions.connection' object has no attribute 'execute'
 ```
 
-adresinde açılmıştır.
+Sorunun PostgreSQL bağlantısında cursor kullanımının gerekli olmasından kaynaklandığı tespit edilmiştir.
 
-Landing page tarayıcıda görüntülenmiştir.
+Kod aşağıdaki yapıya uyarlanmıştır:
 
-### 6.2 Başarılı form testi
+```python
+connection = get_db_connection()
+cursor = connection.cursor()
 
-Kurgusal test verileriyle form gönderilmiştir.
+cursor.execute(
+    """
+    INSERT INTO requests
+    (name, email, service, description)
+    VALUES (%s, %s, %s, %s)
+    """,
+    (name, email, service, description)
+)
 
-Örnek:
-
-```text
-Ad Soyad: test kullanıcısı
-E-posta: test@example.com
-Hizmet: Görev Otomasyonu
+connection.commit()
 ```
 
-Başarılı API isteğinde:
+Düzeltmeden sonra uygulama Render üzerinde tekrar deploy edilmiş ve canlı duruma geçmiştir.
 
-```text
-HTTP 201 Created
-```
+---
 
-yanıtı alınmıştır.
+## 6. Test Süreci
 
-Talebin SQLite veritabanına kaydedildiği ayrıca kontrol edilmiştir.
+Kod değişiklikleri lokal ortamda test edilmiştir.
 
-### 6.3 Client-side validation testi
+Otomatik testlerde dört farklı senaryo bulunmaktadır:
 
-E-posta alanına geçersiz bir format girilmiştir.
-
-Tarayıcının yerleşik form doğrulaması isteğin gönderilmesini engellemiş ve kullanıcıya geçersiz e-posta formatı mesajı gösterilmiştir.
-
-### 6.4 Server-side validation testi
-
-Client-side kontrollerinden bağımsız olarak API endpoint'ine geçersiz e-posta verisi gönderilmiştir.
-
-Sunucu:
-
-```text
-HTTP 400 Bad Request
-```
-
-yanıtı vermiştir.
-
-Bu sonuç server-side validation'ın çalıştığını doğrulamıştır.
-
-### 6.5 SQLite kayıt kontrolü
-
-Başarılı form gönderiminden sonra SQLite veritabanındaki kayıtlar Python ile kontrol edilmiştir.
-
-Kayıtların veritabanında tutulduğu doğrulanmıştır.
-
-## 7. Otomatik Testler
-
-Ek olarak `test_app.py` isimli bir test dosyası oluşturulmuştur.
-
-Testler Flask test istemcisi kullanılarak çalıştırılmıştır.
-
-Çalıştırılan komut:
-
-```text
-python -m unittest test_app.py
-```
-
-Test edilen senaryolar:
-
-1. Geçerli talep oluşturma
+1. Geçerli talep
 2. Geçersiz e-posta
 3. Geçersiz hizmet
 4. Kısa açıklama
 
-Sonuç:
+Son test sonucu:
 
 ```text
 ....
 ----------------------------------------------------------------------
-Ran 4 tests in 0.041s
+Ran 4 tests in 0.011s
 
 OK
 ```
 
-Dört testin tamamı başarıyla geçmiştir.
+Geçerli talep testinde gerçek PostgreSQL bağlantısı yerine `unittest.mock` kullanılmıştır.
 
-## 8. Karşılaşılan Gerçek Problem
+Bu sayede test:
 
-Server-side validation testi sırasında ilk olarak PowerShell üzerinden JSON veri gönderilmeye çalışılmıştır.
+- HTTP endpoint davranışını,
+- başarılı response'u,
+- SQL `execute()` çağrısını,
+- veritabanı `commit()` çağrısını
 
-PowerShell komut satırındaki JSON/tırnaklama nedeniyle istek beklenen biçimde oluşturulamamıştır.
+kontrol edebilmektedir.
 
-Bu nedenle ilk deneme API'nin beklenen validation sonucunu doğrudan göstermemiştir.
+---
 
-Sorunu çözmek için aynı endpoint Python `urllib` kullanılarak test edilmiştir.
+## 7. Canlı Ortam Doğrulaması
 
-Python ile yapılan test sonucunda geçersiz e-posta isteği:
+Otomatik testlerin yanında canlı uygulama üzerinde manuel test gerçekleştirilmiştir.
+
+**Canlı uygulama:**
+
+https://enteksis-task.onrender.com
+
+Kurgusal test verileri kullanılarak form gönderilmiştir.
+
+Başarılı form gönderiminden sonra:
 
 ```text
-HTTP 400 Bad Request
+Talebiniz başarıyla kaydedildi.
 ```
 
-ile reddedilmiştir.
+mesajı gösterilmiştir.
 
-Bu şekilde server-side validation'ın gerçekten çalıştığı doğrulanmıştır.
+Ardından Supabase Table Editor üzerinden kayıt kontrol edilmiş ve form verisinin PostgreSQL veritabanına gerçekten kaydedildiği doğrulanmıştır.
 
-Herhangi bir hata uydurulmamış; yalnızca geliştirme sırasında gerçekten karşılaşılan problem kaydedilmiştir.
+Bu kontrol ile aşağıdaki uçtan uca akış doğrulanmıştır:
 
-## 9. AI Çıktılarının Kontrolü
+```text
+Frontend
+   ↓
+JavaScript fetch()
+   ↓
+Flask API
+   ↓
+Server validation
+   ↓
+PostgreSQL / Supabase
+   ↓
+Successful response
+   ↓
+Frontend success message
+```
 
-AI tarafından oluşturulan kodlar aşağıdaki yöntemlerle kontrol edilmiştir:
+---
 
-* Lokal uygulama çalıştırma
-* Tarayıcı üzerinden manuel form testi
-* Client-side validation testi
-* API endpoint testi
-* SQLite kayıt kontrolü
-* Otomatik unittest testleri
+## 8. AI Çıktılarının Doğrulanması
 
-AI çıktısı çalıştırılmadan veya kontrol edilmeden doğru kabul edilmemiştir.
+AI tarafından önerilen kodların çalıştığı yalnızca metinsel olarak kabul edilmemiştir.
 
-## 10. Kişisel Kararlar
+Doğrulama için:
 
-Projenin küçük ve değerlendirme odaklı olması nedeniyle:
+- Uygulama lokal ortamda çalıştırılmıştır.
+- Otomatik testler çalıştırılmıştır.
+- Form gönderimleri yapılmıştır.
+- Client-side validation kontrol edilmiştir.
+- Server-side validation kontrol edilmiştir.
+- Render deployment logları incelenmiştir.
+- Canlı uygulama üzerinden form gönderilmiştir.
+- Supabase üzerinde oluşan kayıt kontrol edilmiştir.
 
-* React yerine HTML/CSS/JavaScript tercih edilmiştir.
-* Büyük bir veritabanı sistemi yerine SQLite tercih edilmiştir.
-* Gereksiz üçüncü taraf servislerden kaçınılmıştır.
-* Kapsamın 3–4 saatlik hedef çalışma süresinde tamamlanabilmesi amaçlanmıştır.
-* Gerçek kişisel veri kullanılmamıştır.
-* Uygulama kurgusal bir teknoloji hizmeti olarak tasarlanmıştır.
+Bu kontroller sonucunda gerekli görülen kod değişiklikleri yapılmıştır.
 
-Bu kararlar projenin temel gereksinimlerini mümkün olduğunca sade bir mimariyle karşılamak amacıyla alınmıştır.
+---
 
-## 11. Bilinen Sınırlamalar
+## 9. Kullanılmayan / Değiştirilen Öneriler
 
-Proje değerlendirme amacıyla hazırlanmış küçük ölçekli bir prototiptir.
+Geliştirme sürecinde AI tarafından önerilen yaklaşımlar doğrudan kabul edilmemiştir.
 
-Bu nedenle:
+Özellikle başlangıçta kullanılan SQLite yaklaşımı deployment gereksinimleri nedeniyle PostgreSQL/Supabase yapısına geçirilmiştir.
 
-* Kullanıcı hesabı bulunmamaktadır.
-* Yönetici paneli bulunmamaktadır.
-* E-posta bildirim sistemi bulunmamaktadır.
-* İleri seviye rate limiting uygulanmamıştır.
-* CSRF gibi üretim ortamına yönelik ek güvenlik katmanları bulunmamaktadır.
-* SQLite yüksek trafikli üretim sistemi için tasarlanmamıştır.
+Ayrıca testlerde gerçek veritabanına bağımlılık yerine mock kullanılması tercih edilmiştir.
 
-Bu özellikler görev kapsamının dışında bırakılmıştır.
+Bu kararların amacı testleri daha izole ve tekrarlanabilir hale getirmektir.
 
-## 12. Çalışma Süresi
+---
 
-Proje geliştirme süreci yaklaşık 3–4 saatlik aktif çalışma hedefi doğrultusunda yürütülmüştür.
+## 10. Kişisel Katkı
 
-Süre; geliştirme, test, hata ayıklama ve dokümantasyon aşamalarını kapsamaktadır.
+Geliştirici tarafından:
+
+- Gereksinimler analiz edilmiştir.
+- Teknoloji seçimi yapılmıştır.
+- Proje dosya yapısı oluşturulmuştur.
+- Kodlar çalıştırılmıştır.
+- Hatalar incelenmiştir.
+- Deployment süreci yönetilmiştir.
+- Veritabanı bağlantısı kurulmuştur.
+- Testler çalıştırılmıştır.
+- Canlı uygulama kontrol edilmiştir.
+- Supabase kayıtları doğrulanmıştır.
+- AI tarafından üretilen çıktılar proje gereksinimlerine göre değiştirilmiştir.
+
+AI, geliştirme sürecinde yardımcı araç olarak kullanılmıştır; nihai kararlar ve doğrulamalar geliştirici tarafından yapılmıştır.
+
+---
+
+## 11. Test Verileri
+
+Projede yalnızca kurgusal test verileri kullanılmıştır.
+
+Örnek:
+
+```text
+Ad Soyad: Test Kullanıcısı
+E-posta: test@example.com
+Hizmet: Görev Otomasyonu
+```
+
+Gerçek kişisel veri kullanılmamıştır.
+
+---
+
+## 12. Proje Gereksinimlerinin Kontrolü
+
+Değerlendirme çalışmasında belirtilen temel gereksinimler kontrol edilmiştir:
+
+- [x] Teknoloji hizmetini açıklayan landing page
+- [x] Problem ve sağlanan değer açıklaması
+- [x] Mobil ve masaüstü responsive tasarım
+- [x] Ad Soyad alanı
+- [x] E-posta alanı
+- [x] Hizmet seçimi
+- [x] Açıklama alanı
+- [x] Client-side validation
+- [x] Server-side validation
+- [x] Loading durumu
+- [x] Success durumu
+- [x] Error durumu
+- [x] Server-side kalıcı kayıt
+- [x] Başarılı kayıt sonrası success mesajı
+- [x] Otomatik testler
+- [x] Canlı deployment
+- [x] README.md
+- [x] AI_LOG.md
+- [x] Git commit geçmişi
+
+---
 
 ## 13. Sonuç
 
-AI, bu projede geliştiricinin yerine geçen bir sistem olarak değil, geliştirme sürecini hızlandıran ve teknik kararları destekleyen bir yardımcı araç olarak kullanılmıştır.
+AI desteğiyle geliştirilen kod ve dokümantasyon, uygulama çalıştırılarak ve test edilerek doğrulanmıştır.
 
-AI tarafından önerilen kodlar proje gereksinimlerine göre değerlendirilmiş, gerekli yerlerde değiştirilmiş ve çalıştırılarak doğrulanmıştır.
+Özellikle PostgreSQL'e geçiş, Render deployment hatasının çözülmesi, otomatik testlerin çalıştırılması ve canlı veritabanı kaydının doğrulanması geliştirme sürecinin önemli kontrol noktaları olmuştur.
 
-Son ürünün çalışması; manuel testler, API testleri, SQLite kontrolleri ve dört otomatik test ile doğrulanmıştır.
+Proje, değerlendirme amacıyla hazırlanmış çalışan bir prototip olarak teslim edilmektedir.
