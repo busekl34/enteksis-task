@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="FlowTask işletmeler için görev ve müşteri talebi otomasyonu hizmetidir.">
+
+    <title>FlowTask | İşletmeler İçin Görev Otomasyonu</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">FlowTask</div>
+
+            <a class="nav-link" href="#talep">
+                Talep Oluştur
+            </a>
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <span class="badge">
+                        İşletmeler için otomasyon
+                    </span>
+
+                    <h1>
+                        Tekrarlayan işleri otomatikleştirin,
+                        ekibinizin zamanını kazanın.
+                    </h1>
+
+                    <p>
+                        FlowTask; müşteri taleplerinin, görevlerin ve
+                        tekrar eden iş süreçlerinin daha kolay yönetilmesine
+                        yardımcı olan kurgusal bir teknoloji hizmetidir.
+                    </p>
+
+                    <a href="#talep" class="primary-button">
+                        Otomasyon Talebi Oluştur
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+
+        <section class="features">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        İşletmeniz için ne yapabiliriz?
+                    </h2>
+
+                    <p>
+                        İhtiyacınızı anlatın, uygun otomasyon çözümünü birlikte değerlendirelim.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-grid">
+
+                    <article class="feature-card">
+
+                        <h3>
+                            Görev Otomasyonu
+                        </h3>
+
+                        <p>
+                            Tekrarlayan operasyonel görevlerin
+                            otomatikleştirilmesine yardımcı olur.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <h3>
+                            Talep Yönetimi
+                        </h3>
+
+                        <p>
+                            Müşteri taleplerinin doğru ekip ve
+                            süreçlere aktarılmasını kolaylaştırır.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <h3>
+                            İş Akışı Entegrasyonu
+                        </h3>
+
+                        <p>
+                            Mevcut iş süreçlerinin dijital araçlarla
+                            daha düzenli hale getirilmesini hedefler.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REQUEST FORM -->
+
+        <section class="request-section" id="talep">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        Otomasyon talebinizi iletin
+                    </h2>
+
+                    <p>
+                        İhtiyacınızı kısaca açıklayın. Talebiniz sistemimize kaydedilecektir.
+                    </p>
+
+                </div>
+
+
+                <div class="form-wrapper">
+
+                    <form id="requestForm">
+
+                        <div class="form-group">
+
+                            <label for="name">
+                                Ad Soyad *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                autocomplete="name"
+                                required
+                                minlength="2"
+                                maxlength="100"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                E-posta *
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                autocomplete="email"
+                                required
+                                maxlength="150"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="service">
+                                Hizmet seçimi *
+                            </label>
+
+                            <select
+                                id="service"
+                                name="service"
+                                required
+                            >
+
+                                <option value="">
+                                    Hizmet seçin
+                                </option>
+
+                                <option value="Görev Otomasyonu">
+                                    Görev Otomasyonu
+                                </option>
+
+                                <option value="Talep Yönetimi">
+                                    Talep Yönetimi
+                                </option>
+
+                                <option value="İş Akışı Entegrasyonu">
+                                    İş Akışı Entegrasyonu
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="description">
+                                İhtiyacınızı açıklayın *
+                            </label>
+
+                            <textarea
+                                id="description"
+                                name="description"
+                                required
+                                minlength="10"
+                                maxlength="1000"
+                                placeholder="Hangi iş sürecini otomatikleştirmek istediğinizi anlatın."
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                            id="submitButton"
+                        >
+                            Talep Gönder
+                        </button>
+
+
+                        <div
+                            id="formStatus"
+                            class="form-status"
+                            role="status"
+                            aria-live="polite"
+                        ></div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                © 2026 FlowTask — Kurgusal teknoloji hizmeti.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
