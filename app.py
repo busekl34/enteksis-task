@@ -1,24 +1,28 @@
 from flask import Flask, render_template, request, jsonify
-import sqlite3
+import os
+import psycopg2
+from psycopg2.extras import RealDictCursor
 import re
 
 app = Flask(__name__)
 
-app.config["DATABASE"] = "requests.db"
+
 
 
 def get_db_connection():
-    connection = sqlite3.connect(app.config["DATABASE"])
-    connection.row_factory = sqlite3.Row
-    return connection
+    return psycopg2.connect(
+        os.environ["DATABASE_URL"]
+    )
 
 
 def init_db():
     connection = get_db_connection()
 
-    connection.execute("""
+    cursor = connection.cursor()
+
+    cursor.execute("""
         CREATE TABLE IF NOT EXISTS requests (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             name TEXT NOT NULL,
             email TEXT NOT NULL,
             service TEXT NOT NULL,
@@ -28,7 +32,9 @@ def init_db():
     """)
 
     connection.commit()
+    cursor.close()
     connection.close()
+
 
 
 @app.route("/")
@@ -114,7 +120,7 @@ def create_request():
             "message": "Talebiniz başarıyla kaydedildi."
         }), 201
 
-    except sqlite3.Error:
+    except psycopg2.Error:
         return jsonify({
             "success": False,
             "message": "Talep kaydedilirken bir hata oluştu."
