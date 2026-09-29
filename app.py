@@ -1,12 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 import os
 import psycopg2
-from psycopg2.extras import RealDictCursor
 import re
 
 app = Flask(__name__)
-
-
 
 
 def get_db_connection():
@@ -17,7 +14,6 @@ def get_db_connection():
 
 def init_db():
     connection = get_db_connection()
-
     cursor = connection.cursor()
 
     cursor.execute("""
@@ -36,7 +32,6 @@ def init_db():
     connection.close()
 
 
-
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -44,7 +39,6 @@ def home():
 
 @app.route("/api/requests", methods=["POST"])
 def create_request():
-
     data = request.get_json(silent=True)
 
     if not data:
@@ -59,7 +53,6 @@ def create_request():
     description = str(data.get("description", "")).strip()
 
     # Sunucu tarafı doğrulama
-
     if not name:
         return jsonify({
             "success": False,
@@ -99,20 +92,21 @@ def create_request():
         }), 400
 
     # Veritabanına kayıt
-
     try:
         connection = get_db_connection()
+        cursor = connection.cursor()
 
-        connection.execute(
+        cursor.execute(
             """
             INSERT INTO requests
             (name, email, service, description)
-            VALUES (?, ?, ?, ?)
+            VALUES (%s, %s, %s, %s)
             """,
             (name, email, service, description)
         )
 
         connection.commit()
+        cursor.close()
         connection.close()
 
         return jsonify({
@@ -127,6 +121,10 @@ def create_request():
         }), 500
 
 
-if __name__ == "__main__":
+# Render/Gunicorn ile çalışırken tabloyu oluştur
+if os.environ.get("DATABASE_URL"):
     init_db()
+
+
+if __name__ == "__main__":
     app.run(debug=True)
